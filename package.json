@@ -1,0 +1,17 @@
+{
+  "name": "aes-gcm",
+  "version": "1.0.0",
+  "description": "GCM crypto",
+  "main": "index.js",
+  "scripts": {
+    "test": "node gcm"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "crypto": "^1.0.1"
+  },
+  "devDependencies": {
+    "@types/node": "^20.3.1"
+  }
+}
