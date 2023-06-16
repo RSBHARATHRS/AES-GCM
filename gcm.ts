@@ -49,12 +49,12 @@ export class GCM {
 }
 
 let secretKey = 'whatuni';
-let message = 'Prabhakaran';
+let message = 'Angular';
 
 let gcm = new GCM(secretKey);
 
 let encryptedValue = gcm.encrypt(message);
-let decryptedvalue = gcm.decrypt("NUkdB3QvvywWeozvQhgxUNQHGTcJTZpYumlJJZxGCeCM/SfWD+TyzP+Dkuo7Znk84k54j0fw4g==" || encryptedValue);
+let decryptedvalue = gcm.decrypt("JpEQyP9eH5zPZSXXs2Kw3VQ7DQcEg36mAvgFnxpmgXIIw844Zob0PILN129JtJZ95P00LkO5Lw==" || encryptedValue);
 
 console.table({
     encryptedValue,

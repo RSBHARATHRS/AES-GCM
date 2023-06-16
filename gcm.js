@@ -44,11 +44,11 @@ var GCM = /** @class */ (function () {
 }());
 exports.GCM = GCM;
 var secretKey = 'whatuni';
-var message = 'Prabhakaran';
+var message = 'Angular';
 var gcm = new GCM(secretKey);
-// let encryptedValue = gcm.encrypt(message);
-var decryptedvalue = gcm.decrypt("NUkdB3QvvywWeozvQhgxUNQHGTcJTZpYumlJJZxGCeCM/SfWD+TyzP+Dkuo7Znk84k54j0fw4g==");
+var encryptedValue = gcm.encrypt(message);
+var decryptedvalue = gcm.decrypt("JpEQyP9eH5zPZSXXs2Kw3VQ7DQcEg36mAvgFnxpmgXIIw844Zob0PILN129JtJZ95P00LkO5Lw==" || encryptedValue);
 console.table({
-    // encryptedValue,
+    encryptedValue: encryptedValue,
     decryptedvalue: decryptedvalue
 });

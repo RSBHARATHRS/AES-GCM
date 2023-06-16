@@ -5,8 +5,6 @@ import javax.crypto.SecretKeyFactory;
 import javax.crypto.spec.GCMParameterSpec;
 import javax.crypto.spec.PBEKeySpec;
 import javax.crypto.spec.SecretKeySpec;
-
-import java.nio.Buffer;
 import java.nio.ByteBuffer;
 import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
@@ -22,7 +20,7 @@ public class GCM {
 
     private static final Charset UTF_8 = StandardCharsets.UTF_8;
     private static final String CIPHER_ALGORITHM = "AES/GCM/NoPadding";
-    private static final String FACTORY_INSTANCE = "PBKDF2WithHmacSHA256";
+    private static final String FACTORY_INSTANCE = "PBKDF2WithHmacSHA512";
     private static final int TAG_LENGTH = 16;
     private static final int IV_LENGTH = 12;
     private static final int SALT_LENGTH = 16;
@@ -33,9 +31,9 @@ public class GCM {
         System.out.println("AES GCMC 256 String decryption with PBKDF2 derived key");
 
         String masterKey = "whatuni";
-        String encryptedData = encrypt(masterKey, "Bharath");
+        String encryptedData = encrypt(masterKey, "Prabhakaran");
         System.out.println("Encrypted: " + encryptedData);
-        String decryptedText = decrypt(encryptedData, masterKey);
+        String decryptedText = decrypt("jXPqie5DDMZuEJuln3WKg5cKN8LlzEKyuYW8FYeLXqlqKINFr5Tvz3f1aa7Tkwqzm1I5", masterKey);
         System.out.println("Decrypted: " + decryptedText);
     }
 
@@ -60,6 +58,8 @@ public class GCM {
         byte[] content = new byte[byteBuffer.remaining()];
         byteBuffer.get(content);
 
+        // SecretKeySpec keySpec = new SecretKeySpec(key.getEncoded(), "AES");
+
         Cipher cipher = Cipher.getInstance(CIPHER_ALGORITHM);
         SecretKey aesKeyFromPassword = getAESKeyFromPassword(password.toCharArray(), salt);
         cipher.init(Cipher.DECRYPT_MODE, aesKeyFromPassword, new GCMParameterSpec(TAG_LENGTH * 8, iv));
@@ -72,10 +72,10 @@ public class GCM {
         SecretKey secretKey = getSecretKey(password, salt);
 
         byte[] iv = getRandomNonce(IV_LENGTH);
+
         Cipher cipher = initCipher(Cipher.ENCRYPT_MODE, secretKey, iv);
 
-        // byte[] tag = new byte[cipher.update(salt, KEY_LENGTH, IV_LENGTH, iv, ITERATIONS) + cipher.doFinal(UTF_8)]
-        byte[] encryptedMessageByte = cipher.doFinal(plainMessage.getBytes(UTF_8));        
+        byte[] encryptedMessageByte = cipher.doFinal(plainMessage.getBytes(UTF_8));
 
         byte[] cipherByte = ByteBuffer.allocate(salt.length + iv.length + encryptedMessageByte.length)
                 .put(salt)

@@ -58,7 +58,7 @@ secret_key = "whatuni"
 plain_text = "Prabhakaran"
 
 print("------ AES-GCM Encryption ------")
-cipher_text = "NUkdB3QvvywWeozvQhgxUNQHGTcJTZpYumlJJZxGCeCM/SfWD+TyzP+Dkuo7Znk84k54j0fw4g=="
+cipher_text = "jXPqie5DDMZuEJuln3WKg5cKN8LlzEKyuYW8FYeLXqlqKINFr5Tvz3f1aa7Tkwqzm1I5"
 # cipher_text = encrypt(secret_key, plain_text)
 print(outputFormat.format("encryption input", plain_text))
 print(outputFormat.format("encryption output", cipher_text))
